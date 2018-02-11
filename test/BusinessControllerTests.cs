@@ -1,17 +1,38 @@
 using System;
 using Xunit;
 using Business;
+using Data.Entity;
 
 namespace Test
 {
     public class BusinessControllerTests
     {
-        [Fact]
-        public void AddCustomer()
+        private readonly IBusinessController _businessController;
+        public BusinessControllerTests()
         {
-            var businessController = new BusinessController();
-            var exception = Assert.Throws<NullReferenceException>(() => businessController.AddCustomer(null));
-            Assert.Equal("Customer object is required", exception.Message);
+            _businessController = new BusinessController();    
+        }
+
+        [Fact]
+        public void AddCustomer_ThrowsNullRefException_WhenCustomerIsNull()
+        {
+            var exception = Assert.Throws<NullReferenceException>(() => _businessController.AddCustomer(null));
+        }
+
+        [Fact]
+        public void AddCustomer_ThrowsArgumentException_WhenFirstNameIsNull()
+        {
+            var customer = new Customer { FirstName = null, LastName = "ln" }; 
+            var exception = Assert.Throws<ArgumentException>(() => _businessController.AddCustomer(customer));
+            Assert.True(exception.Message.Contains("FirstName"));        
+        }
+        
+        [Fact]
+        public void AddCustomer_ThrowsArgumentException_WhenLastNameIsEmpty()
+        {
+            var customer = new Customer { FirstName = "fn", LastName = string.Empty }; 
+            var exception = Assert.Throws<ArgumentException>(() => _businessController.AddCustomer(customer));
+            Assert.True(exception.Message.Contains("LastName"));        
         }
     }
 }

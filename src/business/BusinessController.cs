@@ -13,11 +13,15 @@ namespace Business
 
         private void ValidateCustomer(Customer customer)
         {
-            if (customer == null) throw new NullReferenceException("Customer object is required");
+            if (customer == null) throw new NullReferenceException($"{nameof(Customer)} object is required");
             
             if (string.IsNullOrEmpty(customer.FirstName))
             {
-                throw new ArgumentException($"{customer.FirstName} is required", customer.FirstName);
+                throw new ArgumentException("FirstName is required", nameof(customer.FirstName));
+            }
+            if (string.IsNullOrEmpty(customer.LastName))
+            {
+                throw new ArgumentException("LastName is required", nameof(customer.LastName));
             }
         }
     }
