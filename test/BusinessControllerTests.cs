@@ -2,15 +2,18 @@ using System;
 using Xunit;
 using Business;
 using Data.Entity;
+using Data;
 
 namespace Test
 {
     public class BusinessControllerTests
     {
         private readonly IBusinessController _businessController;
+        private readonly IDataController _dataController;
         public BusinessControllerTests()
         {
-            _businessController = new BusinessController();    
+            _dataController = new DataController();
+            _businessController = new BusinessController(_dataController);    
         }
 
         [Fact]
@@ -33,6 +36,13 @@ namespace Test
             var customer = new Customer { FirstName = "fn", LastName = string.Empty }; 
             var exception = Assert.Throws<ArgumentException>(() => _businessController.AddCustomer(customer));
             Assert.True(exception.Message.Contains("LastName"));        
+        }
+
+        [Fact]
+        public void AddCustomer_CallsDataController_AddCustomer()
+        {
+            var customer = new Customer { FirstName = "fn", LastName = "ln" }; 
+            Assert.True(_businessController.AddCustomer(customer));
         }
     }
 }

@@ -1,14 +1,22 @@
 ﻿using System;
 using Data.Entity;
+using Data;
 
 namespace Business
 {
     public class BusinessController : IBusinessController
     {
+        private readonly IDataController _dataController;
+
+        public BusinessController(IDataController dataController)
+        {
+            _dataController = dataController;
+        }
+
         public bool AddCustomer(Customer customer)
         {
             ValidateCustomer(customer);
-            return true;
+            return _dataController.AddCustomer(customer);
         }
 
         private void ValidateCustomer(Customer customer)
