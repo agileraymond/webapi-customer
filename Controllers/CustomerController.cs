@@ -4,10 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
-namespace webapi_customer.Controllers
+namespace WebApiCustomer.Controllers
 {
     [Route("api/[controller]")]
-    public class ValuesController : Controller
+    public class CustomerController : Controller
     {
         // GET api/values
         [HttpGet]
