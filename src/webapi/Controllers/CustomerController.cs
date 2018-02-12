@@ -25,23 +25,24 @@ namespace WebApi.Controllers
             return new string[] { "value1", "value2" };
         }
 
-        // GET api/values/5
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = "GetCustomer")]
         public string Get(int id)
         {
             return "value";
         }
 
         [HttpPost]
-        public void Post([FromBody]Customer customer)
+        public IActionResult Post([FromBody]Customer customer)
         {
             _businessController.AddCustomer(customer);
+            return CreatedAtRoute("GetCustomer", new { id = 1 }, customer);
         }
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        public IActionResult Put(int id, [FromBody]string value)
         {
+            return new NoContentResult();
         }
 
         // DELETE api/values/5
