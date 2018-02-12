@@ -8,6 +8,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Business;
+using Data;
 
 namespace WebApi
 {
@@ -24,6 +26,8 @@ namespace WebApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddTransient<IDataController, DataController>();
+            services.AddTransient<IBusinessController, BusinessController>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
