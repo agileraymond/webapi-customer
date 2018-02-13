@@ -15,8 +15,7 @@ namespace Data
         public bool AddCustomer(Customer customer)
         {
             _customerDbContext.Customers.Add(customer);
-            _customerDbContext.SaveChanges();
-            return true;
+            return _customerDbContext.SaveChanges() > 0;            
         }
     }
 }

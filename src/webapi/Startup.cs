@@ -30,8 +30,8 @@ namespace WebApi
             services.AddTransient<IDataController, DataController>();
             services.AddTransient<IBusinessController, BusinessController>();
                         
-            var connection = @"localhost";
-            services.AddDbContext<CustomerDbContext>(options => options.UseSqlServer(connection));
+            var connection = @"add-connection-string";
+            services.AddDbContext<CustomerDbContext>(options => options.UseSqlServer(connection, b => b.MigrationsAssembly("webapi")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
