@@ -1,6 +1,7 @@
 ﻿using System;
 using Data.Entity;
 using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
 
 namespace Data
 {
@@ -17,5 +18,10 @@ namespace Data
             _customerDbContext.Customers.Add(customer);
             return _customerDbContext.SaveChanges() > 0;            
         }
+
+        public async Task<Customer> GetCustomer(int customerId)
+        {
+            return await _customerDbContext.Customers.SingleAsync(b => b.CustomerId == customerId); 
+        } 
     }
 }

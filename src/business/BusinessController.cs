@@ -19,6 +19,11 @@ namespace Business
             return _dataController.AddCustomer(customer);
         }
 
+        public Customer GetCustomer(int customerId)
+        {
+            return _dataController.GetCustomer(customerId).Result;    
+        }
+
         private void ValidateCustomer(Customer customer)
         {
             if (customer == null) throw new NullReferenceException($"{nameof(Customer)} object is required");

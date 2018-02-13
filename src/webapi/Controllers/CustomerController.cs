@@ -16,19 +16,18 @@ namespace WebApi.Controllers
         public CustomerController(IBusinessController businessController)
         {
             _businessController = businessController;
-        }
-
-        // GET api/values
-        [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
+        }        
 
         [HttpGet("{id}", Name = "GetCustomer")]
-        public string Get(int id)
+        public IActionResult Get(int id)
         {
-            return "value";
+            var customer = _businessController.GetCustomer(id);
+            if (customer == null)
+            {
+                return NotFound();
+            }
+
+            return new ObjectResult(customer);
         }
 
         [HttpPost]
