@@ -7,5 +7,6 @@ namespace Data
     {
         bool AddCustomer(Customer customer);
         Task<Customer> GetCustomer(int customerId);
+        bool DeleteCustomer(int customerId);
     }
 }

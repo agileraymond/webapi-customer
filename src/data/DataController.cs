@@ -22,6 +22,13 @@ namespace Data
         public async Task<Customer> GetCustomer(int customerId)
         {
             return await _customerDbContext.Customers.SingleAsync(b => b.CustomerId == customerId); 
+        }
+        
+        public bool DeleteCustomer(int customerId)
+        {
+            var customer = new Customer { CustomerId = customerId };
+            _customerDbContext.Customers.Remove(customer);
+            return _customerDbContext.SaveChanges() > 0;            
         } 
     }
 }

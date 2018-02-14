@@ -24,6 +24,13 @@ namespace Business
             return _dataController.GetCustomer(customerId).Result;    
         }
 
+        public bool DeleteCustomer(int customerId)
+        {
+            return _dataController.DeleteCustomer(customerId);
+        }
+    
+        #region private section
+
         private void ValidateCustomer(Customer customer)
         {
             if (customer == null) throw new NullReferenceException($"{nameof(Customer)} object is required");
@@ -37,5 +44,7 @@ namespace Business
                 throw new ArgumentException("LastName is required", nameof(customer.LastName));
             }
         }
+
+        #endregion
     }
 }

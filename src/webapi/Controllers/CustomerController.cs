@@ -37,17 +37,17 @@ namespace WebApi.Controllers
             return CreatedAtRoute("GetCustomer", new { id = 1 }, customer);
         }
 
-        // PUT api/values/5
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody]string value)
         {
             return new NoContentResult();
         }
 
-        // DELETE api/values/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id)
         {
+            _businessController.DeleteCustomer(id);
+            return new NoContentResult();
         }
     }
 }
