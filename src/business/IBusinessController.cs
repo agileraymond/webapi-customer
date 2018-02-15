@@ -7,5 +7,6 @@ namespace Business
         bool AddCustomer(Customer customer);
         Customer GetCustomer(int customerId);
         bool DeleteCustomer(int customerId);
+        bool UpdateCustomer(Customer customer);
     }
 }

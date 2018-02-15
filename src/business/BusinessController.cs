@@ -15,7 +15,7 @@ namespace Business
 
         public bool AddCustomer(Customer customer)
         {
-            ValidateCustomer(customer);
+            ValidateCustomer(customer, true);
             return _dataController.AddCustomer(customer);
         }
 
@@ -28,10 +28,16 @@ namespace Business
         {
             return _dataController.DeleteCustomer(customerId);
         }
-    
-        #region private section
 
-        private void ValidateCustomer(Customer customer)
+        public bool UpdateCustomer(Customer customer)
+        {
+            ValidateCustomer(customer, false);
+            return _dataController.UpdateCustomer(customer);
+        }
+
+        #region private section        
+
+        private void ValidateCustomer(Customer customer, bool isNewCustomer)
         {
             if (customer == null) throw new NullReferenceException($"{nameof(Customer)} object is required");
             
@@ -42,6 +48,10 @@ namespace Business
             if (string.IsNullOrEmpty(customer.LastName))
             {
                 throw new ArgumentException("LastName is required", nameof(customer.LastName));
+            }
+            if (!isNewCustomer && customer.CustomerId < 1)
+            {
+                throw new NullReferenceException($"{nameof(customer.CustomerId)} is required");
             }
         }
 

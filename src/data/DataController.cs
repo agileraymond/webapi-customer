@@ -30,5 +30,11 @@ namespace Data
             _customerDbContext.Customers.Remove(customer);
             return _customerDbContext.SaveChanges() > 0;            
         } 
+        
+        public bool UpdateCustomer(Customer customer)
+        {
+            _customerDbContext.Customers.Update(customer);
+            return _customerDbContext.SaveChanges() > 0;    
+        }
     }
 }

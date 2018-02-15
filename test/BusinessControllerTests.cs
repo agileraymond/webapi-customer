@@ -46,5 +46,11 @@ namespace Test
             var customer = new Customer { FirstName = "fn", LastName = "ln" }; 
             Assert.True(_businessController.AddCustomer(customer));
         }
+
+        [Fact]
+        public void UpdateCustomer_ThrowsNullRefException_WhenCustomerIsNull()
+        {
+            var exception = Assert.Throws<NullReferenceException>(() => _businessController.UpdateCustomer(null));
+        }
     }
 }

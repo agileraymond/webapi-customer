@@ -38,8 +38,9 @@ namespace WebApi.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody]string value)
+        public IActionResult Put(int id, [FromBody]Customer customer)
         {
+            _businessController.UpdateCustomer(customer);
             return new NoContentResult();
         }
 
