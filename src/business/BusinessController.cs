@@ -13,7 +13,7 @@ namespace Business
             _dataController = dataController;
         }
 
-        public bool AddCustomer(Customer customer)
+        public int AddCustomer(Customer customer)
         {
             ValidateCustomer(customer, true);
             return _dataController.AddCustomer(customer);

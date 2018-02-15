@@ -13,10 +13,11 @@ namespace Data
             _customerDbContext = customerDbContext;        
         }
 
-        public bool AddCustomer(Customer customer)
+        public int AddCustomer(Customer customer)
         {
             _customerDbContext.Customers.Add(customer);
-            return _customerDbContext.SaveChanges() > 0;            
+            _customerDbContext.SaveChanges();
+            return customer.CustomerId;            
         }
 
         public async Task<Customer> GetCustomer(int customerId)

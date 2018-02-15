@@ -5,7 +5,7 @@ namespace Data
 {
     public interface IDataController
     {
-        bool AddCustomer(Customer customer);
+        int AddCustomer(Customer customer);
         Task<Customer> GetCustomer(int customerId);
         bool DeleteCustomer(int customerId);
         bool UpdateCustomer(Customer customer);

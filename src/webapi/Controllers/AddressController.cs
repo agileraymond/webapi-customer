@@ -9,46 +9,47 @@ using Data.Entity;
 namespace WebApi.Controllers
 {
     [Route("api/[controller]")]
-    public class CustomerController : Controller
+    public class AddressController : Controller
     {
         private readonly IBusinessController _businessController;
 
-        public CustomerController(IBusinessController businessController)
+        public AddressController(IBusinessController businessController)
         {
             _businessController = businessController;
         }        
-
-        [HttpGet("{id}", Name = "GetCustomer")]
+        /* 
+        [HttpGet("{id}", Name = "GetAddress")]
         public IActionResult Get(int id)
         {
-            var customer = _businessController.GetCustomer(id);
-            if (customer == null)
+            var address = _businessController.GetAddress(id);
+            if (address == null)
             {
                 return NotFound();
             }
 
-            return new ObjectResult(customer);
+            return new ObjectResult(address);
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody]Customer customer)
+        public IActionResult Post([FromBody]Address address)
         {
-            var customerId = _businessController.AddCustomer(customer);
-            return CreatedAtRoute("GetCustomer", new { id = customerId }, customer);
+            var newAddress = _businessController.AddAddress(address);
+            return CreatedAtRoute("GetAddress", new { id = newAddress.AddressId }, address);
         }
 
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody]Customer customer)
+        public IActionResult Put(int id, [FromBody]Address address)
         {
-            _businessController.UpdateCustomer(customer);
+            _businessController.UpdateAddress(address);
             return new NoContentResult();
         }
 
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            _businessController.DeleteCustomer(id);
+            _businessController.DeleteAddress(id);
             return new NoContentResult();
         }
+        */
     }
 }
