@@ -35,6 +35,26 @@ namespace Business
             return _dataController.UpdateCustomer(customer);
         }
 
+        public int AddAddress(Address address)
+        {
+            return _dataController.AddAddress(address);
+        }
+
+        public Address GetAddress(int addressId)
+        {
+            return _dataController.GetAddress(addressId).Result;
+        }
+
+        public bool DeleteAddress(int addressId)
+        {
+            return _dataController.DeleteCustomer(addressId);
+        }
+
+        public bool UpdateAddress(Address address)
+        {
+            return _dataController.UpdateAddress(address);
+        }
+
         #region private section        
 
         private void ValidateCustomer(Customer customer, bool isNewCustomer)

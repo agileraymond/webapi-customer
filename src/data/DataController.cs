@@ -37,5 +37,30 @@ namespace Data
             _customerDbContext.Customers.Update(customer);
             return _customerDbContext.SaveChanges() > 0;    
         }
+
+        public int AddAddress(Address address)
+        {
+            _customerDbContext.Addresses.Add(address);
+            _customerDbContext.SaveChanges();
+            return address.AddressId;
+        }
+
+        public async Task<Address> GetAddress(int addressId)
+        {
+            return await _customerDbContext.Addresses.SingleAsync(b => b.AddressId == addressId);
+        }
+
+        public bool DeleteAddress(int addressId)
+        {
+            var address = new Address { AddressId = addressId };
+            _customerDbContext.Addresses.Remove(address);
+            return _customerDbContext.SaveChanges() > 0;
+        }
+
+        public bool UpdateAddress(Address address)
+        {
+            _customerDbContext.Addresses.Update(address);
+            return _customerDbContext.SaveChanges() > 0;
+        }
     }
 }

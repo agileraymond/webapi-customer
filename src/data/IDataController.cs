@@ -9,5 +9,9 @@ namespace Data
         Task<Customer> GetCustomer(int customerId);
         bool DeleteCustomer(int customerId);
         bool UpdateCustomer(Customer customer);
+        int AddAddress(Address address);
+        Task<Address> GetAddress(int addressId);
+        bool DeleteAddress(int addressId);
+        bool UpdateAddress(Address address);
     }
 }

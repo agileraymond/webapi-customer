@@ -17,7 +17,7 @@ namespace WebApi.Controllers
         {
             _businessController = businessController;
         }        
-        /* 
+         
         [HttpGet("{id}", Name = "GetAddress")]
         public IActionResult Get(int id)
         {
@@ -33,8 +33,8 @@ namespace WebApi.Controllers
         [HttpPost]
         public IActionResult Post([FromBody]Address address)
         {
-            var newAddress = _businessController.AddAddress(address);
-            return CreatedAtRoute("GetAddress", new { id = newAddress.AddressId }, address);
+            var addressId = _businessController.AddAddress(address);
+            return CreatedAtRoute("GetAddress", new { id = addressId }, address);
         }
 
         [HttpPut("{id}")]
@@ -50,6 +50,5 @@ namespace WebApi.Controllers
             _businessController.DeleteAddress(id);
             return new NoContentResult();
         }
-        */
     }
 }
