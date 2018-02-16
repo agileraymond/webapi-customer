@@ -37,6 +37,7 @@ namespace Business
 
         public int AddAddress(Address address)
         {
+            ValidateAddress(address, true);
             return _dataController.AddAddress(address);
         }
 
@@ -47,7 +48,7 @@ namespace Business
 
         public bool DeleteAddress(int addressId)
         {
-            return _dataController.DeleteCustomer(addressId);
+            return _dataController.DeleteAddress(addressId);
         }
 
         public bool UpdateAddress(Address address)
@@ -72,6 +73,16 @@ namespace Business
             if (!isNewCustomer && customer.CustomerId < 1)
             {
                 throw new NullReferenceException($"{nameof(customer.CustomerId)} is required");
+            }
+        }
+
+        private void ValidateAddress(Address address, bool isNewAddress)
+        {
+            if (address == null) throw new NullReferenceException($"{nameof(Address)} object is required");        
+        
+            if (!isNewAddress && address.CustomerId < 1)
+            {
+                throw new ArgumentException($"{nameof(address.CustomerId)} must be greater than zero.");    
             }
         }
 

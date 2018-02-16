@@ -52,5 +52,18 @@ namespace Test
         {
             var exception = Assert.Throws<NullReferenceException>(() => _businessController.UpdateCustomer(null));
         }
+
+        [Fact]
+        public void AddAddress_ThrowsNullReferenceException_WhenAddressIsNull()
+        {
+            var exception = Assert.Throws<NullReferenceException>(() => _businessController.AddAddress(null));
+        }
+
+        [Fact]
+        public void AddAddress_ThrowsArgumentException_WhenCustomerIdIsInvalid()
+        {
+            var address = new Address { CustomerId = 0 };
+            var exception = Assert.Throws<ArgumentException>(() => _businessController.AddAddress(address));
+        }
     }
 }

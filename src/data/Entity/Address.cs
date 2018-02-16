@@ -8,6 +8,7 @@ namespace Data.Entity
         public string City { get; set; }
         public string State { get; set; }
 
+        public int CustomerId { get; set; }
         public Customer Customer { get; set; }
     }   
 }
