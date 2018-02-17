@@ -80,7 +80,7 @@ namespace Business
         {
             if (address == null) throw new NullReferenceException($"{nameof(Address)} object is required");        
         
-            if (!isNewAddress && address.CustomerId < 1)
+            if (isNewAddress && address.CustomerId < 1)
             {
                 throw new ArgumentException($"{nameof(address.CustomerId)} must be greater than zero.");    
             }

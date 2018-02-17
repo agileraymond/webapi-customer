@@ -41,7 +41,7 @@ namespace Test
         }
 
         [Fact]
-        public void AddCustomer_CallsDataController_AddCustomer()
+        public void AddCustomer_WorksAsExpected()
         {
             var customer = new Customer { FirstName = "fn", LastName = "ln" }; 
             _mockDataController.Setup(x => x.AddCustomer(customer)).Returns(1);    
@@ -60,11 +60,11 @@ namespace Test
             var exception = Assert.Throws<NullReferenceException>(() => _businessController.AddAddress(null));
         }
 
-        [Fact(Skip="need to mock next calls")]
+        [Fact]
         public void AddAddress_ThrowsArgumentException_WhenCustomerIdIsInvalid()
         {
             var address = new Address { CustomerId = 0 };
-            //var exception = Assert.Throws<ArgumentException>(() => _businessController.AddAddress(address));
+            var exception = Assert.Throws<ArgumentException>(() => _businessController.AddAddress(address));
         }
     }
 }
