@@ -3,19 +3,19 @@ using Xunit;
 using Business;
 using Data.Entity;
 using Data;
+using Moq;
 
 namespace Test
 {
     public class BusinessControllerTests
     {
         private readonly IBusinessController _businessController;
-        private readonly IDataController _dataController;
+        private readonly Mock<IDataController> _mockDataController;
         
         public BusinessControllerTests()
         {
-            // TODO: fix customerdb context
-            _dataController = new DataController(null);
-            _businessController = new BusinessController(_dataController);    
+            _mockDataController = new Mock<IDataController>();
+            _businessController = new BusinessController(_mockDataController.Object);    
         }
 
         [Fact]
@@ -40,11 +40,12 @@ namespace Test
             Assert.True(exception.Message.Contains("LastName"));        
         }
 
-        [Fact(Skip="db context needs to be fix")]
+        [Fact]
         public void AddCustomer_CallsDataController_AddCustomer()
         {
             var customer = new Customer { FirstName = "fn", LastName = "ln" }; 
-            //Assert.True(_businessController.AddCustomer(customer));
+            _mockDataController.Setup(x => x.AddCustomer(customer)).Returns(1);    
+            Assert.True(_businessController.AddCustomer(customer) == 1);
         }
 
         [Fact]
